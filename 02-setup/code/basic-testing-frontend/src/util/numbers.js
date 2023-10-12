@@ -1,23 +1,16 @@
-import { validateNumber, validateStringNotEmpty } from './validation';
+import { validateNumber, validateStringNotEmpty } from './validation.js';
 
 export function transformToNumber(value) {
 	return +value;
 }
 
-export function calculateNumbersInputs(numberInputs) {
-	let result = '';
-
-	try {
-		const numbers = [];
-		for (const numberInput of numberInputs) {
-			validateStringNotEmpty(numberInput);
-			const number = transformToNumber(numberInput);
-			validateNumber(number);
-			numbers.push(number);
-		}
-		result = add(numbers).toString();
-	} catch (error) {
-		result = error.message;
+export function cleanInput(numberValues) {
+	const numbers = [];
+	for (const numberInput of numberValues) {
+		validateStringNotEmpty(numberInput);
+		const number = transformToNumber(numberInput);
+		validateNumber(number);
+		numbers.push(number);
 	}
-	return result;
+	return numbers;
 }

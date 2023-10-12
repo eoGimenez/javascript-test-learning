@@ -72,3 +72,4 @@ describe('validateNumber()', () => {
 		expect(resultFr).toThrow();
 	});
 });
+

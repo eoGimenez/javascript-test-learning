@@ -1,9 +1,8 @@
 import { getNumbersValues } from './src/parser.js';
-import { calculateNumbersInputs } from './src/util/numbers.js';
-import { validateResult } from './src/util/validation.js';
+import { calculateNumbersInputs } from './src/math.js';
+import { outputResult, yieldResult } from './src/output.js';
 
 const form = document.querySelector('form');
-const output = document.getElementById('result');
 
 function formSubmitHandler(event) {
 	event.preventDefault();
@@ -11,9 +10,9 @@ function formSubmitHandler(event) {
 
 	let result = calculateNumbersInputs(numbersExtrcted);
 
-	let resultText = validateResult(result);
+	let resultText = yieldResult(result);
 
-	output.textContent = resultText;
+	outputResult(resultText);
 }
 
 form.addEventListener('submit', formSubmitHandler);
