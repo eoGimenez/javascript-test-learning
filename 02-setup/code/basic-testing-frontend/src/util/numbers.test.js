@@ -73,4 +73,18 @@ describe('cleanInput()', () => {
 
 		expect(resultFn).toThrow(/must not be empty/);
 	});
+	it('Should throw an error if an array with at least one invalid parameter is provided', () => {
+		const numbers = ['1', true];
+
+		const resultFn = () => cleanInput(numbers);
+
+		expect(resultFn).toThrow();
+	});
+	it('Should throw Error with a message that contains (Invalid input)', () => {
+		const numbers = ['1', true];
+
+		const resultFn = () => cleanInput(numbers);
+
+		expect(resultFn).toThrow(/Invalid input/);
+	});
 });

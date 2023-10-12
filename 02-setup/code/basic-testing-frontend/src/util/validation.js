@@ -1,7 +1,9 @@
 export function validateStringNotEmpty(value) {
-	if (value.trim().length === 0) {
-		throw new Error('Invalid input - must not be empty.');
-	}
+	if (typeof value == 'string') {
+		if (value.trim().length === 0) {
+			throw new Error('Invalid input - must not be empty.');
+		}
+	} else throw new Error('Invalid input - must not be empty.');
 }
 
 export function validateNumber(number) {

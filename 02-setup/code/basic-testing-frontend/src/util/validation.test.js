@@ -5,20 +5,20 @@ describe('validateStringNotEmpty()', () => {
 	it('Should throw Error when an empty string is is provided', () => {
 		const input = '';
 
-		const resultFr = () => {
+		const resultFn = () => {
 			validateStringNotEmpty(input);
 		};
 
-		expect(resultFr).toThrow();
+		expect(resultFn).toThrow();
 	});
 	it('Should throw Error when string of blonks is provided', () => {
 		const input = '            ';
 
-		const resultFr = () => {
+		const resultFn = () => {
 			validateStringNotEmpty(input);
 		};
 
-		expect(resultFr).toThrow();
+		expect(resultFn).toThrow();
 	});
 	it('Should throw Error if any other value than string is provided', () => {
 		const inputOne = 1;
@@ -36,11 +36,11 @@ describe('validateStringNotEmpty()', () => {
 	it('Should throw Error with a message that contains (must not be empty)', () => {
 		const input = '';
 
-		const resultFr = () => {
+		const resultFn = () => {
 			validateStringNotEmpty(input);
 		};
 
-		expect(resultFr).toThrow(/must not be empty/);
+		expect(resultFn).toThrow(/must not be empty/);
 	});
 });
 
@@ -48,28 +48,27 @@ describe('validateNumber()', () => {
 	it('Should throw Error when an NaN is provided', () => {
 		const input = NaN;
 
-		const resultFr = () => {
+		const resultFn = () => {
 			validateNumber(input);
 		};
 
-		expect(resultFr).toThrow();
+		expect(resultFn).toThrow();
 	});
 	it('Should throw Error with a message that contains (Invalid number input)', () => {
 		const input = NaN;
 
-		const resultFr = () => {
+		const resultFn = () => {
 			validateNumber(input);
 		};
 
-		expect(resultFr).toThrow(/Invalid number input./);
+		expect(resultFn).toThrow(/Invalid number input./);
 	});
 
 	it('Should throw Error when a string number is provided', () => {
 		const input = '1';
 
-		const resultFr = () => validateNumber(input);
+		const resultFn = () => validateNumber(input);
 
-		expect(resultFr).toThrow();
+		expect(resultFn).toThrow();
 	});
 });
-
