@@ -1,49 +1,76 @@
-import { expect, it } from 'vitest';
-import { transformToNumber } from './numbers';
+import { describe, expect, it } from 'vitest';
+import { transformToNumber, cleanInput } from './numbers';
 
-it('Should yield a typeOf number from a string number', () => {
-	const input = '1';
+describe('transformToNumber()', () => {
+	it('Should yield a typeOf number from a string number', () => {
+		const input = '1';
 
-	const result = transformToNumber(input);
+		const result = transformToNumber(input);
 
-	expect(result).toBeTypeOf('number');
+		expect(result).toBeTypeOf('number');
+	});
+
+	it('Should yield a number from a string number', () => {
+		const input = '5';
+
+		const result = transformToNumber(input);
+
+		expect(result).toBe(+input);
+	});
+	it('Should yield the same number if its a number', () => {
+		const input = 5;
+
+		const result = transformToNumber(input);
+
+		expect(result).toBe(input);
+	});
+
+	it('Should yield NaN for non-transformable values', () => {
+		const input = 'Hola';
+
+		const result = transformToNumber(input);
+
+		expect(result).toBeNaN();
+	});
+	it('should throw an error if no value is passed into the function', () => {
+		const resultFr = () => {
+			transformToNumber();
+		};
+		if (resultFr == 0) expect(resultFr).toThrow(/is not iterable/);
+	});
+
+	it('Should throw error if try to pass more than 1 argument', () => {
+		const inputOne = '1';
+		const inputTwo = '5';
+
+		const resultFr = () => {
+			transformToNumber(inputOne, inputTwo);
+		};
+		if (resultFr == 0) expect(resultFr).toThrow(/Only accept one argument/);
+	});
 });
 
-it('Should yield a number from a string number', () => {
-	const input = "5";
+describe('cleanInput()', () => {
+	it('Should return an array of numbers values if an array of string numbers values is provided', () => {
+		const numbers = ['1', '2'];
 
-	const result = transformToNumber(input);
+		const result = cleanInput(numbers);
 
-	expect(result).toBe(+input);
-});
-it('Should yield the same number if its a number', () => {
-	const input = 5;
+		// expect(result).toContain(transformToNumber(numbers[0])); funciona correctamente tambien
+		expect(result[0]).toBeTypeOf('number');
+	});
+	it('Should throw an error if an array with at least one empty string is provided', () => {
+		const numbers = ['1', ''];
 
-	const result = transformToNumber(input);
+		const resultFn = () => cleanInput(numbers);
 
-	expect(result).toBe(input);
-});
+		expect(resultFn).toThrow();
+	});
+	it('Should throw Error with a message that contains (must not be empty)', () => {
+		const numbers = ['1', ''];
 
-it('Should yield NaN for non-transformable values', () => {
-	const input = 'Hola';
+		const resultFn = () => cleanInput(numbers);
 
-	const result = transformToNumber(input);
-
-	expect(result).toBeNaN();
-});
-it('should throw an error if no value is passed into the function', () => {
-	const resultFr = () => {
-		transformToNumber();
-	};
-	if (resultFr == 0) expect(resultFr).toThrow(/is not iterable/);
-});
-
-it('Should throw error if try to pass more than 1 argument', () => {
-	const inputOne = '1';
-	const inputTwo = '5';
-
-	const resultFr = () => {
-		transformToNumber(inputOne, inputTwo);
-	};
-	if (resultFr == 0) expect(resultFr).toThrow(/Only accept one argument/);
+		expect(resultFn).toThrow(/must not be empty/);
+	});
 });
