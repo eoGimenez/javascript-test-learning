@@ -3,7 +3,7 @@ export function validateStringNotEmpty(value) {
 		if (value.trim().length === 0) {
 			throw new Error('Invalid input - must not be empty.');
 		}
-	} else throw new Error('Invalid input - must not be empty.');
+	} else throw new Error('Invalid input - You must enter valid numbers.');
 }
 
 export function validateNumber(number) {

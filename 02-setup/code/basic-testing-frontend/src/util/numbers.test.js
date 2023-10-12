@@ -80,11 +80,11 @@ describe('cleanInput()', () => {
 
 		expect(resultFn).toThrow();
 	});
-	it('Should throw Error with a message that contains (Invalid input)', () => {
+	it('Should throw Error with a message that contains (You must enter valid numbers)', () => {
 		const numbers = ['1', true];
 
 		const resultFn = () => cleanInput(numbers);
 
-		expect(resultFn).toThrow(/Invalid input/);
+		expect(resultFn).toThrow(/You must enter valid numbers/);
 	});
 });
