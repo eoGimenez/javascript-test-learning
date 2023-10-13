@@ -56,8 +56,13 @@ describe('cleanInput()', () => {
 
 		const result = cleanInput(numbers);
 
-		// expect(result).toContain(transformToNumber(numbers[0])); funciona correctamente tambien
-		expect(result[0]).toBeTypeOf('number');
+		// expect(result).toContain(transformToNumber(numbers[0])); <<< funciona correctamente tambien
+		// expect(result).toBe([1, 2]); <<< Esta comparación es incorrecta porque las arrays son referencias distintas,
+		// por lo tanto no compara su valor sino su referencia en memoria
+		// expect(result[0]).toBeTypeOf('number'); <<< tambien funciona correctamente, pero solo checkea que el valor asignado,
+		// sea de type number, si el segundo es otro valor, aunque tire error dara el test como true
+		expect(result).toEqual([1, 2]); // <<< la mejor opción en este tipo de escenarios es usar el toEqual(),
+		// este metodo compara valores, NO REFERENCIAS DE MEMORIA.
 	});
 	it('Should throw an error if an array with at least one empty string is provided', () => {
 		const numbers = ['1', ''];
