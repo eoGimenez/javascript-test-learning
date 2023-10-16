@@ -24,7 +24,7 @@ afterEach(() => {
 	console.log('BeforeEach()');
 });
 
-it('Should update the email', () => {
+it.concurrent('Should update the email', () => {
 	const newTestEmail = 'test2@test.com';
 
 	user.updateEmail(newTestEmail);
@@ -32,26 +32,26 @@ it('Should update the email', () => {
 	expect(user.email).toBe(newTestEmail);
 });
 
-it('Should have an email property', () => {
+it.concurrent('Should have an email property', () => {
 	expect(user).toHaveProperty('email');
 });
 
-it('Should store the provided email value', () => {
+it.concurrent('Should store the provided email value', () => {
 	expect(user.email).toBe(testEmail);
 });
 
-it('Should clear the email', () => {
+it.concurrent('Should clear the email', () => {
 	user.clearEmail();
 
 	expect(user.email).toBe('');
 });
 
-it('Should still have an email property after clearing the email', () => {
+it.concurrent('Should still have an email property after clearing the email', () => {
 	user.clearEmail();
 
 	expect(user).toHaveProperty('email');
 });
-it('Should have an empty email property after clearing the email', () => {
+it.concurrent('Should have an empty email property after clearing the email', () => {
 	user.clearEmail();
 
 	expect(user.email).toBe('');

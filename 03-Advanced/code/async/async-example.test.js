@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { generateToken, generateTokenPromise } from './async-example';
 
-describe('generateToken()', () => {
+describe.concurrent('generateToken()', () => {
 	it('Should generate a token value', (done) => {
 		const userEmail = 'a@a.com';
 
@@ -26,7 +26,7 @@ describe('generateToken()', () => {
 	});
 });
 
-describe('generateTokenPromise()', () => {
+describe.concurrent('generateTokenPromise()', () => {
 	it('Should generate a token value', () => {
 		const userEmail = 'a@a.com';
 
