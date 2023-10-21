@@ -9,8 +9,9 @@ export function savePost(postData) {
 export function extractPostData(form) {
   const title = form.get('title');
   const content = form.get('content');
-
-  validateNotEmpty(title, 'A title must be provided.');
+  if (typeof title == 'string') {
+    validateNotEmpty(title, 'A title must be provided.');
+  } else validateNotEmpty(title, 'The title must be an string')
   validateNotEmpty(content, 'Content must not be empty!');
 
   return { title, content };
